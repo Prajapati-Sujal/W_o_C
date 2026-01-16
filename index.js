@@ -1,21 +1,30 @@
-const { addTask, deleteTask, listTasks, markDone } = require('./operations');
+const express = require('express');
+const bodyParser = require('body-parser');
 
-const cmd = process.argv[2];
-const arg = process.argv[3];
+const pages = require('./operations');
 
-switch(cmd){
-    case "add":
-        addTask(arg);
-        break;
-    case "delete":
-        deleteTask(Number(arg));
-        break;
-    case "list":
-        listTasks();
-        break;
-    case "done":
-        markDone(Number(arg));
-        break;
-    default:
-        console.log("Invalid command");
-}
+const app = express();
+require('dotenv').config();
+
+app.use(bodyParser.urlencoded({}));
+
+app.get('/',pages.homepage)
+
+app.get('/add-task',pages.getAddTask)
+
+app.post('/add-task',pages.postAddTask)
+
+app.get('/task/:id/edit',pages.getEdit)
+
+app.post('/task/:id/edit',pages.postEdit)
+
+app.get('/task/:id/delete',pages.getDelete)
+
+app.use((req,res)=>{
+    res.send("<h1>404 Page not found</h1>");
+})
+
+const port = process.env.PORT || 3000;
+app.listen(port,()=>{
+    console.log(`Server is listening on port ${port}`);
+});

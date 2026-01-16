@@ -1,7 +1,7 @@
 {
   "name": "task-tracker",
   "version": "1.0.0",
-  "description": "This is my first task",
+  "description": "This is my second checpoint",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,6 +9,11 @@
   "author": "Sujal Prajapati (202301478)",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^17.2.3"
+    "body-parser": "^2.2.2",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
   }
 }
